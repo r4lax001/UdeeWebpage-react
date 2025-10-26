@@ -21,23 +21,15 @@ function Navbar() {
                         <Link to="/" className='text-[40px] font-semibold text-white drop-shadow-md'>UDee</Link>
 
                         <div className='flex items-center gap-x-3'>
-                            
+
                             <Link to="">
                                 <button className={btnNavStyle}>
                                     คู่มือการใช้งาน
                                 </button>
                             </Link>
-
                             <Link to="">
                                 <button className={btnNavStyle}>
-                                    <IoIosLock size={20}/>
-                                    เข้าสู่ระบบ/สมัครสมาชิก
-                                </button>
-                            </Link>
-
-                            <Link to="">
-                                <button className={btnNavStyle}>
-                                    <FiPlus size={20}/>
+                                    <FiPlus size={20} />
                                     ลงขาย
                                 </button>
                             </Link>
@@ -46,6 +38,13 @@ function Navbar() {
                                 <button className={btnNavStyle}>
                                     <GrContact size={18} />
                                     ติดต่อเรา
+                                </button>
+                            </Link>
+
+                            <Link to="">
+                                <button className={btnNavStyle}>
+                                    <IoIosLock size={20} />
+                                    เข้าสู่ระบบ/สมัครสมาชิก
                                 </button>
                             </Link>
                         </div>
