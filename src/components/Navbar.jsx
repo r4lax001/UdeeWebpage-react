@@ -24,20 +24,8 @@ function Navbar() {
 
                             <Link to="">
                                 <button className={btnNavStyle}>
-                                    คู่มือการใช้งาน
-                                </button>
-                            </Link>
-                            <Link to="">
-                                <button className={btnNavStyle}>
                                     <FiPlus size={20} />
                                     ลงขาย
-                                </button>
-                            </Link>
-
-                            <Link to="">
-                                <button className={btnNavStyle}>
-                                    <GrContact size={18} />
-                                    ติดต่อเรา
                                 </button>
                             </Link>
 

@@ -44,9 +44,9 @@ function LoanCalculator() {
 
     // สูตรคำนวณผ่อนบ้าน: M = P * [r(1+r)^n] / [(1+r)^n - 1]
     const monthlyPayment = (P * (r * Math.pow(1 + r, n))) / (Math.pow(1 + r, n) - 1);
-    
+
     if (!isFinite(monthlyPayment)) {
-       return { monthlyPayment: 0, principal: 0, interest: 0, downPayment, ltv, loanAmount: P };
+      return { monthlyPayment: 0, principal: 0, interest: 0, downPayment, ltv, loanAmount: P };
     }
 
     const interest = P * r; // ดอกเบี้ย (งวดแรก)
@@ -64,15 +64,16 @@ function LoanCalculator() {
   const formatNum = (num) => num.toLocaleString('th-TH', { maximumFractionDigits: 0 });
 
   return (
-    <div className="container max-w-[1572px] mx-auto px-4 mt-8">
-      <h2 className="text-2xl font-medium mb-6">ยอดสินเชื่อโดยประมาณ</h2>
-      
+    <div className="container max-w-[1572px] mx-auto px-4 mt-20">
+      <hr className=" border-gray-200 mb-10" />
+      <h2 className="text-[36px] font-medium mb-6">ยอดสินเชื่อโดยประมาณ</h2>
+
       {/* แบ่ง 3 ส่วน: 2 ส่วนสำหรับผลลัพธ์ (ซ้าย), 1 ส่วนสำหรับ Input (ขวา) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
 
         {/* --- ส่วนผลลัพธ์ (ซ้าย) --- */}
         <div className="md:col-span-2 space-y-8">
-          
+
           {/* 1. รายละเอียดสินเชื่อ (ผ่อนต่อเดือน) */}
           <div>
             <p className="text-lg font-medium text-gray-800">รายละเอียดสินเชื่อ</p>
@@ -80,16 +81,16 @@ function LoanCalculator() {
             <p className="text-3xl font-medium text-gray-900 mb-3">
               ฿ {formatNum(loanData.monthlyPayment)} / เดือน
             </p>
-            
+
             {/* กราฟแท่ง */}
             <div className="flex w-full h-3 rounded-full overflow-hidden bg-gray-200 mb-2">
-              <div 
-                className="bg-blue-500" 
+              <div
+                className="bg-blue-500"
                 style={{ width: `${principalPercent}%` }}
                 title="เงินต้น"
               ></div>
-              <div 
-                className="bg-teal-500" 
+              <div
+                className="bg-teal-500"
                 style={{ width: `${interestPercent}%` }}
                 title="ดอกเบี้ย"
               ></div>
@@ -107,7 +108,7 @@ function LoanCalculator() {
             </div>
           </div>
 
-          <hr/>
+          <hr />
 
           {/* 2. ค่าใช้จ่ายเบื้องต้น (เงินดาวน์) */}
           <div>
@@ -127,7 +128,7 @@ function LoanCalculator() {
                 เงินดาวน์
               </span>
               <span>
-                จำนวนสินเชื่อ ฿ {formatNum(loanData.loanAmount)} ในอัตรา 
+                จำนวนสินเชื่อ ฿ {formatNum(loanData.loanAmount)} ในอัตรา
                 {loanData.ltv.toFixed(0)}% ของสินเชื่อต่อราคาบ้าน (Loan-to-value)
               </span>
             </div>

@@ -8,10 +8,14 @@ import PropertyImageCollage from './components/PropertyImageCollage'
 import PropertyDetails from './components/PropertyDetails'
 import Map from './components/Map'
 import PropertyDescription from './components/PropertyDescription'
+// import RelatedProperties from './components/RelatedProperties'
+import SpeedDial from './components/SpeedDial'
+import LoanCalculator from './components/LoanCalculator'
+import UserProfilePage from "./Page/UserProfilePage"
+import AppMixmap from "./layouts/AppMixmap"
+
 import RelatedProperties from './components/RelatedProperties'
-import SpeedDial from './components/SpeedDial' 
-import LoanCalculator from './components/LoanCalculator' 
-import UserProfilePage from "./Page/UserProfilePage";
+
 
 
 function App() {
@@ -21,29 +25,28 @@ function App() {
   return (
     <>
       <Navbar />
-      
+
       {/* <Routes> ทำหน้าที่สลับหน้าเพจ */}
       <Routes>
-        
+
         {/* Route 1: หน้าหลัก (แสดงรายละเอียดอสังหาฯ) */}
         <Route path="/" element={
           <>
             <PropertyImageCollage />
             <AppHeader />
             <PropertyDetails />
-            <Map embedUrl={mapEmbedUrl} />
-            <PropertyDescription /> 
+            <AppMixmap mapEmbedUrl={mapEmbedUrl} />
             <LoanCalculator />
             <RelatedProperties />
           </>
-          
+
         } />
-        
+
         {/* Route 2: หน้าโปรไฟล์ (วางไว้ที่นี่) */}
         <Route path="/profile/*" element={<UserProfilePage />} />
 
       </Routes>
-      
+
       <Footer />
       <SpeedDial />
     </>

@@ -139,10 +139,8 @@ function UserProfilePage() {
       <main className="flex-1 p-10 bg-[#F4F0FF]">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">ข้อมูลส่วนตัว</h1>
         
-        {/* การ์ดข้อมูลสีขาว */}
-        <div className="bg-white rounded-2xl shadow-lg max-w-2xl p-8">
-          
-          {/* Avatar ใหญ่ */}
+        
+        <div className="bg-white rounded-2xl shadow-lg max-w-2xl p-8">       
           <div className="flex justify-center mb-6">
             <div className="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center">
               {user.avatarUrl ? 
@@ -152,15 +150,12 @@ function UserProfilePage() {
             </div>
           </div>
           
-          {/* รายละเอียด */}
           <div className="space-y-3">
             <InfoRow label="ชื่อ - นามสกุล" value={user.name} />
             <InfoRow label="Userid" value={user.userid_detail} />
             <InfoRow label="Rank" value={user.rank} />
             <InfoRow label="อีเมล" value={user.email} />
           </div>
-
-          {/* ปุ่มแก้ไข */}
           <button 
             onClick={handleEditProfile}
             className="w-full mt-8 py-3 px-6 bg-[#AF8FE9] text-white font-semibold rounded-lg shadow-md hover:bg-purple-main transition-colors duration-200"

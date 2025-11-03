@@ -13,12 +13,14 @@ const DetailSection = ({ title, children }) => (
 function PropertyDescription() {
     return (
 
+        
         <div className='flex justify-start'>
-            <div className="container max-w-[1572px] mx-auto px-4 mt-8">
+            
+            <div className="container max-w-[1572px] text-[20px] mx-auto  px-4 mt-10">
+                
+                <h2 className="text-[36px] font-medium mb-3">รายละเอียด</h2>
 
-                <h2 className="text-2xl font-medium mb-3">รายละเอียด</h2>
-
-                <p className="text-lg text-black font-medium">
+                <p className="text-[24px] text-black font-medium">
                     RC094125 ให้เช่า Condo Happy Condo Ratchada 18 ใกล้ MRT สุทธิสาร
                 </p>
                 <p className="text-gray-600 font-medium">ค่าเช่า 15,000 บาท/เดือน (สัญญา 1 ปี)</p>
@@ -55,9 +57,6 @@ function PropertyDescription() {
                     <p className="font-semibold text-black">A LIVAR ESTATE CO.,LTD.</p>
                     <p className="text-gray-600 font-medium">รับฝากขาย-เช่า อสังหาริมทรัพย์</p>
                 </div>
-
-                {/* เส้นคั่น */}
-                <hr className="my-10 border-gray-200" />
             </div>
         </div>
     );

@@ -8,10 +8,10 @@ function Map({ embedUrl }) {
 
   return (
     
-    <div className="container max-w-[1572px] mx-auto px-4 pt-10 border-b border-t mt-10">
-      <h2 className="text-2xl font-medium mb-4">แผนที่</h2>
+    <div className="container mx-auto px-4 pt-10  ">
+      <h2 className="text-[36px] font-medium mb-3">แผนที่</h2>
       
-      <div className="max-w-[1052px] aspect-[2/1] overflow-hidden mt-10 rounded-lg ">
+      <div className="max-w-[626px] h-[345px] border-2 aspect-[2/1] overflow-hidden mt-10 rounded-lg ">
         <iframe
           src={embedUrl}
           width="100%"
