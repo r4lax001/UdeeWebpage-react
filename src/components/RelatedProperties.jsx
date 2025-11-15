@@ -40,7 +40,7 @@ function RelatedProperties() {
     },
     {
       id: 4,
-      imageUrl: Rec4, // ใช้รูปที่ 4 ถ้ามี
+      imageUrl: Rec4,
       code: "RC093825",
       title: "Condo เฟอร์นิเจอร์",
       location: "กรุงเทพมหานคร",
@@ -49,7 +49,7 @@ function RelatedProperties() {
   ];
 
   return (
-    <div className="container max-w-[1500px] mx-auto mt-20 px-4 py-12">
+    <div className="container max-w-[1500px] mx-auto  mt-20 py-12">
       
       <hr className="mb-20 border-gray-200" /> 
 
@@ -57,7 +57,7 @@ function RelatedProperties() {
         สินค้าใกล้เคียง
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20">
+      <div className="flex gap-5 cursor-pointer ">
         
         {properties.map(property => (
           <PropertyCard

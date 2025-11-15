@@ -10,7 +10,7 @@ const InputBox = ({ label, value, onChange, prefix, suffix }) => (
         type="text"
         value={value}
         onChange={onChange}
-        className={`w-full rounded-lg border border-gray-300 p-3 text-right font-medium text-lg ${prefix ? 'pl-10' : ''} ${suffix ? 'pr-10' : ''}`}
+        className={`w-full rounded-lg border border-gray-300 p-3 text-right font-medium text-base ${prefix ? 'pl-10' : ''} ${suffix ? 'pr-10' : ''}`}
       />
       {suffix && <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">{suffix}</span>}
     </div>
@@ -65,8 +65,8 @@ function LoanCalculator() {
 
   return (
     <div className="container max-w-[1572px] mx-auto px-4 mt-20">
-      <hr className=" border-gray-200 mb-10" />
-      <h2 className="text-[36px] font-medium mb-6">ยอดสินเชื่อโดยประมาณ</h2>
+      <hr className="border-gray-200 mb-10" />
+      <h2 className="text-[28px] md:text-[32px] font-medium mb-6">ยอดสินเชื่อโดยประมาณ</h2>
 
       {/* แบ่ง 3 ส่วน: 2 ส่วนสำหรับผลลัพธ์ (ซ้าย), 1 ส่วนสำหรับ Input (ขวา) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
@@ -76,9 +76,9 @@ function LoanCalculator() {
 
           {/* 1. รายละเอียดสินเชื่อ (ผ่อนต่อเดือน) */}
           <div>
-            <p className="text-lg font-medium text-gray-800">รายละเอียดสินเชื่อ</p>
+            <p className="text-base md:text-lg font-medium text-gray-800">รายละเอียดสินเชื่อ</p>
             <p className="text-sm text-gray-500 mb-1">ยอดสินเชื่อที่ต้องชำระต่อเดือนโดยประมาณ</p>
-            <p className="text-3xl font-medium text-gray-900 mb-3">
+            <p className="text-2xl md:text-[28px] font-medium text-gray-900 mb-3">
               ฿ {formatNum(loanData.monthlyPayment)} / เดือน
             </p>
 
@@ -112,9 +112,9 @@ function LoanCalculator() {
 
           {/* 2. ค่าใช้จ่ายเบื้องต้น (เงินดาวน์) */}
           <div>
-            <p className="text-lg font-medium text-gray-800">ค่าใช้จ่ายที่อาจต้องมีเบื้องต้น</p>
+            <p className="text-base md:text-lg font-medium text-gray-800">ค่าใช้จ่ายที่อาจต้องมีเบื้องต้น</p>
             <p className="text-sm text-gray-500 mb-1">เงินดาวน์ทั้งหมด</p>
-            <p className="text-3xl font-medium text-gray-900 mb-3">
+            <p className="text-2xl md:text-[28px] font-medium text-gray-900 mb-3">
               ฿ {formatNum(loanData.downPayment)}
             </p>
             {/* กราฟแท่ง */}
@@ -127,7 +127,7 @@ function LoanCalculator() {
                 <span className="w-3 h-3 rounded-full bg-blue-500"></span>
                 เงินดาวน์
               </span>
-              <span>
+              <span className="text-xs md:text-sm">
                 จำนวนสินเชื่อ ฿ {formatNum(loanData.loanAmount)} ในอัตรา
                 {loanData.ltv.toFixed(0)}% ของสินเชื่อต่อราคาบ้าน (Loan-to-value)
               </span>
@@ -162,7 +162,7 @@ function LoanCalculator() {
             onChange={(e) => setTermStr(e.target.value)}
           />
 
-          <button className="w-full py-3 mt-4 text-lg font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-colors">
+          <button className="w-full py-3 mt-4 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-colors">
             คำนวณอีกครั้ง
           </button>
         </div>

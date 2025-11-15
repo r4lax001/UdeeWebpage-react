@@ -1,17 +1,20 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-
-import AppHeader from '../Page/AppHeader'
-
-
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import SpeedDial from '../components/SpeedDial'
 
 function AppLayouts() {
   return (
-    <div className='mx-auto'>
-        <div className='max-w-[1572px] mx-auto mt-10'>
-            <AppHeader />
-        </div>
-        
+    <div className='min-h-screen flex flex-col'>
+      <Navbar />
+
+      <main className='flex-grow'>
+        <Outlet /> {/* เนื้อหาจาก routes ย่อยจะแสดงที่นี่ */}
+      </main>
+
+      <Footer />
+      <SpeedDial />
     </div>
   )
 }

@@ -3,7 +3,6 @@ import { Routes, Link } from "react-router-dom";
 
 import { IoIosLock } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
-import { GrContact } from "react-icons/gr";
 import { IoIosArrowDown } from "react-icons/io";
 
 const MegaMenuContent = ({ type }) => {

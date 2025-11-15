@@ -6,11 +6,11 @@ import { FaLayerGroup } from "react-icons/fa";
 import { MdBathtub } from "react-icons/md";
 
 const DetailItem = ({ icon, label, value }) => (
-  <div className="flex items-start gap-5">
-    <span className="text-gray-700 text-[32px] mt-0.5">{icon}</span>
+  <div className="flex items-start gap-3">
+    <span className="text-gray-700 text-[24px] mt-0.5">{icon}</span>
     <div>
-      <p className="text-[20px] text-gray-600">{label}</p>
-      {value && <p className="font-medium text-gray-900 text-[24px]">{value}</p>}
+      <p className="text-[16px] text-gray-600">{label}</p>
+      {value && <p className="font-medium text-gray-900 text-[18px]">{value}</p>}
     </div>
   </div>
 );
@@ -29,9 +29,8 @@ function PropertyDetails() {
 
   return (
     <div className="container max-w-[1500px] mx-auto px-4 py-8">
-
-      <div className='grid grid-cols-2 gap-20'>
-        <div className="grid grid-cols-1  gap-10 ">
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20'>
+        <div className="grid grid-cols-1 gap-8">
           <DetailItem
             icon={<FaBuilding />}
             label="ชื่อโครงการ"
@@ -43,8 +42,7 @@ function PropertyDetails() {
             value={details.address}
           />
         </div>
-        <div className="grid grid-cols-3 gap-20">
-
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
           <DetailItem
             icon={<BsTextareaResize />}
             label="ขนาด"
@@ -60,7 +58,6 @@ function PropertyDetails() {
             label="ห้องนอน"
             value={details.bedrooms}
           />
-
           <DetailItem
             icon={<MdBathtub />}
             label="ห้องน้ำ"
@@ -78,7 +75,6 @@ function PropertyDetails() {
           />
         </div>
       </div>
-
     </div>
   );
 }

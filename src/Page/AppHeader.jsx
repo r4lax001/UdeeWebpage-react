@@ -15,37 +15,32 @@ function AppHeader() {
   return (
     <div className='container max-w-[1500px] mt-12 mx-auto px-4 border-b pb-8'>
       <div className='flex flex-col gap-6'>
-
         {/* Header Section */}
-
         <div className='flex flex-wrap items-center gap-4'>
-          <span className="font-medium flex gap-2 items-center bg-[#E1D0FF] text-[#5B21B6] text-[22px] py-3 px-10 rounded-lg">
+          <span className="font-medium flex gap-2 items-center bg-[#E1D0FF] text-[#5B21B6] text-[18px] py-2.5 px-8 rounded-lg">
             <FaBuilding />
             เช่า
           </span>
-          <h2 className='font-bold text-2xl md:text-3xl text-gray-800'>
+          <h2 className='font-bold text-[1.75rem] md:text-[2rem] text-gray-800'>
             RC094125 ให้เช่า Condo Happy Condo Ratchada 18 ใกล้ MRT สุทธิสาร
           </h2>
         </div>
-
-
-        <div className='flex  flex-col mt-8 mb-8 md:flex-row md:justify-between md:items-center gap-4'>
+        <div className='flex flex-col mt-8 mb-8 md:flex-row md:justify-between md:items-center gap-4'>
           <div>
-            <h2 className='text-4xl md:text-5xl font-semibold text-gray-900'>
+            <h2 className='text-[42px] md:text-[48px] font-semibold text-gray-900'>
               ฿ 15,000
-              <span className='text-lg md:text-xl font-normal text-gray-500'> / เดือน</span>
+              <span className='text-base md:text-lg font-normal text-gray-500'> / เดือน</span>
             </h2>
           </div>
-
           <div className='flex gap-3'>
             <button
               onClick={handleLikeClick}
-              className={`font-medium flex gap-2 items-center py-2.5 px-5 rounded-lg transition-colors ${likeButtonClass}`}
+              className={`font-medium flex gap-2 items-center py-4 px-8 rounded-lg transition-colors ${likeButtonClass}`}
             >
               {isLiked ? <FaHeart /> : <FaRegHeart />}
               ถูกใจ
             </button>
-            <button className='font-medium flex gap-2 items-center bg-gray-100 text-gray-700 py-2.5 px-5 rounded-lg hover:bg-gray-200 transition-colors'>
+            <button className='font-medium flex gap-2 items-center bg-gray-100 text-gray-700 py-2.5 px-8 rounded-lg hover:bg-gray-200 transition-colors'>
               <FaShareSquare />
               แชร์
             </button>

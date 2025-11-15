@@ -1,10 +1,9 @@
 import React from 'react';
 
-// สร้างคอมโพเนนต์ย่อยสำหรับหัวข้อ
 const DetailSection = ({ title, children }) => (
     <div className="mt-6">
-        <h3 className="text-xl font-medium text-gray-800 mb-2">{title}</h3>
-        <div className="space-y-1 text-gray-700 font-medium">
+        <h3 className="text-lg font-medium text-gray-800 mb-2">{title}</h3>
+        <div className="space-y-1 text-gray-700 font-medium text-base">
             {children}
         </div>
     </div>
@@ -12,19 +11,15 @@ const DetailSection = ({ title, children }) => (
 
 function PropertyDescription() {
     return (
-
-        
         <div className='flex justify-start'>
-            
-            <div className="container max-w-[1572px] text-[20px] mx-auto  px-4 mt-10">
-                
-                <h2 className="text-[36px] font-medium mb-3">รายละเอียด</h2>
-
-                <p className="text-[24px] text-black font-medium">
+            <div className="container max-w-[1572px] mx-auto px-4 mt-10">
+                <h2 className="text-[28px] md:text-[32px] font-medium mb-3">รายละเอียด</h2>
+                <p className="text-lg md:text-xl text-black font-medium mb-2">
                     RC094125 ให้เช่า Condo Happy Condo Ratchada 18 ใกล้ MRT สุทธิสาร
                 </p>
-                <p className="text-gray-600 font-medium">ค่าเช่า 15,000 บาท/เดือน (สัญญา 1 ปี)</p>
-                <p className="text-gray-600 font-medium">- ประกัน 2 เดือน ล่วงหน้า 1 เดือน</p>
+                
+                <p className="text-base text-gray-600 font-medium">ค่าเช่า 15,000 บาท/เดือน (สัญญา 1 ปี)</p>
+                <p className="text-base text-gray-600 font-medium">- ประกัน 2 เดือน ล่วงหน้า 1 เดือน</p>
 
                 <DetailSection title="รายละเอียด :">
                     <p>- ห้องขนาด 40 ตร.ม.</p>
@@ -54,8 +49,8 @@ function PropertyDescription() {
                 </DetailSection>
 
                 <div className="mt-6">
-                    <p className="font-semibold text-black">A LIVAR ESTATE CO.,LTD.</p>
-                    <p className="text-gray-600 font-medium">รับฝากขาย-เช่า อสังหาริมทรัพย์</p>
+                    <p className="font-semibold text-black text-base">A LIVAR ESTATE CO.,LTD.</p>
+                    <p className="text-gray-600 font-medium text-base">รับฝากขาย-เช่า อสังหาริมทรัพย์</p>
                 </div>
             </div>
         </div>
