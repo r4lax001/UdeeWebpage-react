@@ -1,25 +1,17 @@
 import React from 'react';
 
 
-import img5 from '../assets/img/Rectangle 24 (1).png';
-import img2 from '../assets/img/Rectangle 24 (2).png';
-import img3 from '../assets/img/Rectangle 24 (3).png';
-import img4 from '../assets/img/Rectangle 24 (4).png';
-import img1 from '../assets/img/Rectangle 24.png'; 
+import img1 from '../../assets/img/Sale/Rectangle 1.png';
+import img2 from '../../assets/img/Sale/Rectangle 3.png';
+import img3 from '../../assets/img/Sale/Rectangle 4.png';
+import img4 from '../../assets/img/Sale/Rectangle 5.png';
+import img5 from '../../assets/img/Sale/Rectangle 6.png';
 
-// 2. สร้าง Array จากรูปที่ import เข้ามา
 const myImages = [img1, img2, img3, img4, img5];
 
-/**
- * คอมโพเนนต์สำหรับแสดงคอลลาจรูปภาพ 5 รูป (แบบ Hardcoded)
- */
-// 3. ลบ props ({ images = ... }) ออกจากวงเล็บ
 function PropertyImageCollage() {
 
-    // 4. เปลี่ยน displayImages ให้ใช้ Array 'myImages' ที่เราสร้างไว้
     const displayImages = myImages;
-
-    // สร้างฟังก์ชันสำหรับจัดการรูปภาพแต่ละรูป
     const ImageItem = ({ src, alt, className = "" }) => (
         <div className={`overflow-hidden ${className}`}>
             <img

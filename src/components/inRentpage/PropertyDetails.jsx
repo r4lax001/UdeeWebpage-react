@@ -5,6 +5,8 @@ import { BsTextareaResize } from "react-icons/bs";
 import { FaLayerGroup } from "react-icons/fa";
 import { MdBathtub } from "react-icons/md";
 
+import Data from "../../data/propertyData_rent"
+
 const DetailItem = ({ icon, label, value }) => (
   <div className="flex items-start gap-3">
     <span className="text-gray-700 text-[24px] mt-0.5">{icon}</span>
@@ -16,16 +18,6 @@ const DetailItem = ({ icon, label, value }) => (
 );
 
 function PropertyDetails() {
-  const details = {
-    projectName: "Happy Condo Ratchada 18",
-    address: "สามเสนนอก, ห้วยขวาง, กรุงเทพมหานคร",
-    size: "40",
-    floor: "4",
-    bedrooms: "1",
-    bathrooms: "1",
-    parking: "1",
-    type: "เช่า"
-  };
 
   return (
     <div className="container max-w-[1500px] mx-auto px-4 py-8">
@@ -34,43 +26,43 @@ function PropertyDetails() {
           <DetailItem
             icon={<FaBuilding />}
             label="ชื่อโครงการ"
-            value={details.projectName}
+            value={Data.details.projectName}
           />
           <DetailItem
             icon={<IoIosPin />}
             label="ที่อยู่"
-            value={details.address}
+            value={Data.details.address}
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
           <DetailItem
             icon={<BsTextareaResize />}
             label="ขนาด"
-            value={details.size}
+            value={Data.details.size}
           />
           <DetailItem
             icon={<FaLayerGroup />}
             label="ชั้น"
-            value={details.floor}
+            value={Data.details.floor}
           />
           <DetailItem
             icon={<FaBed />}
             label="ห้องนอน"
-            value={details.bedrooms}
+            value={Data.details.bedroom}
           />
           <DetailItem
             icon={<MdBathtub />}
             label="ห้องน้ำ"
-            value={details.bathrooms}
+            value={Data.details.bathroom}
           />
           <DetailItem
             icon={<FaCar />}
             label="ที่จอดรถ"
-            value={details.parking}
+            value={Data.details.parking}
           />
           <DetailItem
             icon={<FaTag />}
-            label={details.type}
+            label={Data.details.type}
             value={null}
           />
         </div>

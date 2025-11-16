@@ -1,8 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import SpeedDial from '../components/SpeedDial'
+import Navbar from '../components/inappLayout/Navbar'
+import Footer from '../components/inappLayout/Footer'
+import SpeedDial from '../components/inappLayout/SpeedDial'
 
 function AppLayouts() {
   return (

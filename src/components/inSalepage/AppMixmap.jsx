@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Map from '../components/Map'
-import PropertyDescription from '../components/PropertyDescription'
+import Map from '../Map'
+import PropertyDescription from './PropertyDescription'
 
 function AppMixmap({ mapEmbedUrl }) {
   return (
