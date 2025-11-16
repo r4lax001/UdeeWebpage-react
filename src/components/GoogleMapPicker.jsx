@@ -33,8 +33,8 @@ function GoogleMapPicker({ mapAddress, onAddressChange }) {
   }, [isLoaded, onAddressChange]);
 
   return (
-    <div className="container mx-auto px-4 pt-10">
-      <h2 className="text-[36px] font-medium mb-3">แผนที่</h2>
+    <div className="container mx-auto px-4 ">
+      <h2 className="text-[20px] font-medium mb-3">แผนที่</h2>
       
       <input
         type="text"
