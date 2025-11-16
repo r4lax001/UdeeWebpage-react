@@ -49,9 +49,9 @@ function RelatedProperties() {
   ];
 
   return (
-    <div className="container max-w-[1500px] mx-auto  mt-20 py-12">
+    <div className="container max-w-[1500px] mx-auto  py-12">
       
-      <hr className="mb-20 border-gray-200" /> 
+      <hr className="mb-10 border-gray-200" /> 
 
       <h2 className="text-[36px] font-medium text-gray-900 mb-8">
         สินค้าใกล้เคียง

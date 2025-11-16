@@ -4,6 +4,9 @@ import {
   FaBullhorn, FaRegLifeRing, FaSignOutAlt 
 } from "react-icons/fa";
 
+import Navbar from "../components/inappLayout/Navbar";
+import Footer from "../components/inappLayout/Footer";
+
 const SidebarMenuItem = ({ icon, text, active, onClick }) => {
   return (
     <button 
@@ -52,146 +55,152 @@ function UserProfilePage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#F4F0FF]">
+    <>
+      {/* เพิ่ม Navbar ตรงนี้ */}
+      <Navbar />
       
-      {/* Sidebar with Glass Morphism */}
-      <aside className="w-80 bg-white backdrop-blur-xl shadow-2xl p-6 flex flex-col">
+      <div className="flex min-h-screen bg-[#F4F0FF]">
         
-        {/* Profile Section */}
-        <div className="relative mb-8 p-6 rounded-2xl bg-[#AF8FE9] shadow-xl">
-          <div className="flex items-center gap-4">
-            <div className="relative group">
-              <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-300">
-                {user.avatarUrl ? 
-                  <img src={user.avatarUrl} alt="Avatar" className="w-full h-full rounded-full object-cover"/> :
-                  <FaUserCircle size={48} className="text-white" />
-                }
-              </div>
-              <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform duration-200">
-                <FaPen size={12} className="text-[#AF8FE9]" />
-              </div>
-            </div>
-            <div className="flex-grow text-white">
-              <h2 className="text-xl font-bold tracking-wide">{user.username}</h2>
-              <p className="text-sm text-white/80 font-medium">{user.id}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Menu */}
-        <nav className="flex flex-col gap-2 flex-grow">
-          <SidebarMenuItem 
-            icon={<FaRegFileAlt size={20} />} 
-            text="ประกาศล่าสุด" 
-            active={activeMenu === 'latest'}
-            onClick={() => setActiveMenu('latest')}
-          />
-          <SidebarMenuItem 
-            icon={<FaRegHeart size={20} />} 
-            text="ประกาศที่ถูกใจ" 
-            active={activeMenu === 'liked'}
-            onClick={() => setActiveMenu('liked')}
-          />
-          <SidebarMenuItem 
-            icon={<FaBullhorn size={20} />} 
-            text="ประกาศของฉัน" 
-            active={activeMenu === 'myposts'}
-            onClick={() => setActiveMenu('myposts')}
-          />
-          <SidebarMenuItem 
-            icon={<FaRegLifeRing size={20} />} 
-            text="ช่วยเหลือ" 
-            active={activeMenu === 'help'}
-            onClick={() => setActiveMenu('help')}
-          />
-        </nav>
-
-        {/* Logout Section */}
-        <div className="mt-auto pt-6 border-t border-gray-200">
-          <button 
-            onClick={handleLogout} 
-            className="flex items-center gap-4 px-6 py-4 rounded-xl text-gray-700 hover:bg-red-50 hover:text-red-500 w-full transition-all duration-200 group"
-          >
-            <FaSignOutAlt size={20} className="group-hover:rotate-12 transition-transform duration-200" />
-            <span className="font-medium">ออกจากระบบ</span>
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 p-10 overflow-auto">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="mb-10">
-            <h1 className="text-5xl font-bold text-gray-800 mb-2">
-              ข้อมูลส่วนตัว
-            </h1>
-            <p className="text-gray-600">จัดการและแก้ไขข้อมูลของคุณ</p>
-          </div>
+        {/* Sidebar with Glass Morphism */}
+        <aside className="w-80 bg-white backdrop-blur-xl shadow-2xl p-6 flex flex-col">
           
-          {/* Profile Card */}
-          <div className="bg-white rounded-3xl shadow-2xl p-10 hover:shadow-purple-200/50 transition-all duration-500">
-            
-            {/* Avatar Section */}
-            <div className="flex justify-center mb-8 relative">
+          {/* Profile Section */}
+          <div className="relative mb-8 p-6 rounded-2xl bg-[#AF8FE9] shadow-xl">
+            <div className="flex items-center gap-4">
               <div className="relative group">
-                {/* Animated Ring */}
-                <div className="absolute -inset-2 rounded-full bg-[#AF8FE9] opacity-20 animate-pulse"></div>
-                
-                {/* Avatar Container */}
-                <div className="relative w-40 h-40 rounded-full bg-purple-50 flex items-center justify-center ring-8 ring-white shadow-xl group-hover:scale-105 transition-transform duration-300">
+                <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-300">
                   {user.avatarUrl ? 
                     <img src={user.avatarUrl} alt="Avatar" className="w-full h-full rounded-full object-cover"/> :
-                    <FaUserCircle size={100} className="text-[#AF8FE9]" />
+                    <FaUserCircle size={48} className="text-white" />
                   }
                 </div>
-                
-                {/* Edit Badge */}
-                <div className="absolute bottom-2 right-2 w-12 h-12 bg-[#AF8FE9] rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 hover:bg-[#9A7DD0] transition-all duration-200">
-                  <FaPen size={16} className="text-white" />
+                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform duration-200">
+                  <FaPen size={12} className="text-[#AF8FE9]" />
                 </div>
               </div>
+              <div className="flex-grow text-white">
+                <h2 className="text-xl font-bold tracking-wide">{user.username}</h2>
+                <p className="text-sm text-white/80 font-medium">{user.id}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation Menu */}
+          <nav className="flex flex-col gap-2 flex-grow">
+            <SidebarMenuItem 
+              icon={<FaRegFileAlt size={20} />} 
+              text="ประกาศล่าสุด" 
+              active={activeMenu === 'latest'}
+              onClick={() => setActiveMenu('latest')}
+            />
+            <SidebarMenuItem 
+              icon={<FaRegHeart size={20} />} 
+              text="ประกาศที่ถูกใจ" 
+              active={activeMenu === 'liked'}
+              onClick={() => setActiveMenu('liked')}
+            />
+            <SidebarMenuItem 
+              icon={<FaBullhorn size={20} />} 
+              text="ประกาศของฉัน" 
+              active={activeMenu === 'myposts'}
+              onClick={() => setActiveMenu('myposts')}
+            />
+            <SidebarMenuItem 
+              icon={<FaRegLifeRing size={20} />} 
+              text="ช่วยเหลือ" 
+              active={activeMenu === 'help'}
+              onClick={() => setActiveMenu('help')}
+            />
+          </nav>
+
+          {/* Logout Section */}
+          <div className="mt-auto pt-6 border-t border-gray-200">
+            <button 
+              onClick={handleLogout} 
+              className="flex items-center gap-4 px-6 py-4 rounded-xl text-gray-700 hover:bg-red-50 hover:text-red-500 w-full transition-all duration-200 group"
+            >
+              <FaSignOutAlt size={20} className="group-hover:rotate-12 transition-transform duration-200" />
+              <span className="font-medium">ออกจากระบบ</span>
+            </button>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 p-10 overflow-auto">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
+            <div className="mb-10">
+              <h1 className="text-5xl font-bold text-gray-800 mb-2">
+                ข้อมูลส่วนตัว
+              </h1>
+              <p className="text-gray-600">จัดการและแก้ไขข้อมูลของคุณ</p>
             </div>
             
-            {/* Info Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <InfoRow label="ชื่อ - นามสกุล" value={user.name} />
-              <InfoRow label="Userid" value={user.userid_detail} />
-              <InfoRow label="Rank" value={user.rank} />
-              <InfoRow label="อีเมล" value={user.email} />
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex gap-4">
-              <button 
-                onClick={handleEditProfile}
-                className="flex-1 py-4 px-8 bg-[#AF8FE9] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 hover:bg-[#9A7DD0] transition-all duration-300"
-              >
-                แก้ไขข้อมูล
-              </button>
+            {/* Profile Card */}
+            <div className="bg-white rounded-3xl shadow-2xl p-10 hover:shadow-purple-200/50 transition-all duration-500">
               
-              <button 
-                className="py-4 px-8 bg-gray-100 text-gray-700 font-bold rounded-xl shadow-md hover:shadow-lg hover:bg-gray-200 transition-all duration-300"
-              >
-                ยกเลิก
-              </button>
-            </div>
-          </div>
+              {/* Avatar Section */}
+              <div className="flex justify-center mb-8 relative">
+                <div className="relative group">
+                  {/* Animated Ring */}
+                  <div className="absolute -inset-2 rounded-full bg-[#AF8FE9] opacity-20 animate-pulse"></div>
+                  
+                  {/* Avatar Container */}
+                  <div className="relative w-40 h-40 rounded-full bg-purple-50 flex items-center justify-center ring-8 ring-white shadow-xl group-hover:scale-105 transition-transform duration-300">
+                    {user.avatarUrl ? 
+                      <img src={user.avatarUrl} alt="Avatar" className="w-full h-full rounded-full object-cover"/> :
+                      <FaUserCircle size={100} className="text-[#AF8FE9]" />
+                    }
+                  </div>
+                  
+                  {/* Edit Badge */}
+                  <div className="absolute bottom-2 right-2 w-12 h-12 bg-[#AF8FE9] rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 hover:bg-[#9A7DD0] transition-all duration-200">
+                    <FaPen size={16} className="text-white" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Info Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <InfoRow label="ชื่อ - นามสกุล" value={user.name} />
+                <InfoRow label="Userid" value={user.userid_detail} />
+                <InfoRow label="Rank" value={user.rank} />
+                <InfoRow label="อีเมล" value={user.email} />
+              </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 gap-6 mt-8">
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-              <div className="text-3xl font-bold text-[#AF8FE9] mb-2">24</div>
-              <div className="text-sm text-gray-600">ประกาศทั้งหมด</div>
+              {/* Action Buttons */}
+              <div className="flex gap-4">
+                <button 
+                  onClick={handleEditProfile}
+                  className="flex-1 py-4 px-8 bg-[#AF8FE9] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 hover:bg-[#9A7DD0] transition-all duration-300"
+                >
+                  แก้ไขข้อมูล
+                </button>
+                
+                <button 
+                  className="py-4 px-8 bg-gray-100 text-gray-700 font-bold rounded-xl shadow-md hover:shadow-lg hover:bg-gray-200 transition-all duration-300"
+                >
+                  ยกเลิก
+                </button>
+              </div>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-              <div className="text-3xl font-bold text-[#AF8FE9] mb-2">156</div>
-              <div className="text-sm text-gray-600">ถูกใจ</div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 gap-6 mt-8">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+                <div className="text-3xl font-bold text-[#AF8FE9] mb-2">24</div>
+                <div className="text-sm text-gray-600">ประกาศทั้งหมด</div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+                <div className="text-3xl font-bold text-[#AF8FE9] mb-2">156</div>
+                <div className="text-sm text-gray-600">ถูกใจ</div>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+
+    </>
   );
 }
 

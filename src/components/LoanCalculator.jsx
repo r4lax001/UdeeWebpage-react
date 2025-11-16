@@ -64,7 +64,7 @@ function LoanCalculator() {
   const formatNum = (num) => num.toLocaleString('th-TH', { maximumFractionDigits: 0 });
 
   return (
-    <div className="container max-w-[1572px] mx-auto px-4 mt-20">
+    <div className="container max-w-[1500px] mx-auto px-4 mt-10">
       <hr className="border-gray-200 mb-10" />
       <h2 className="text-[28px] md:text-[32px] font-medium mb-6">ยอดสินเชื่อโดยประมาณ</h2>
 

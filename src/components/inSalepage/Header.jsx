@@ -10,19 +10,93 @@ function Header() {
     setIsLiked(prevIsLiked => !prevIsLiked);
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
+    const shareData = {
+      title: Data.title,
+      text: `${Data.title} - ฿${Data.price.toLocaleString()}/${Data.priceUnit}`,
+      url: window.location.href
+    };
+
+    // ลองใช้ Web Share API ก่อน (สำหรับมือถือ)
     if (navigator.share) {
-      navigator.share({
-        title: Data.title,
-        text: `${Data.title} - ฿${Data.price.toLocaleString()}/${Data.priceUnit}`,
-        url: window.location.href
-      }).catch((error) => console.log('Error sharing:', error));
+      try {
+        await navigator.share(shareData);
+        console.log('แชร์สำเร็จ!');
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.log('Error sharing:', error);
+        }
+      }
     } else {
-
-
-      navigator.clipboard.writeText(window.location.href);
-      alert('คัดลอกลิงก์แล้ว!');
+      // Fallback: คัดลอกลิงก์
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        showShareNotification();
+      } catch (error) {
+        // ถ้า clipboard ไม่ทำงาน ใช้วิธีเก่า
+        const textArea = document.createElement('textarea');
+        textArea.value = shareData.url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showShareNotification();
+      }
     }
+  };
+
+  const showShareNotification = () => {
+    // สร้าง notification element
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+      <div style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #10B981;
+        color: white;
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: slideIn 0.3s ease-out;
+      ">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <span style="font-weight: 500;">คัดลอกลิงก์สำเร็จ!</span>
+      </div>
+    `;
+    
+    // เพิ่ม animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // ลบ notification หลัง 3 วินาที
+    setTimeout(() => {
+      notification.firstChild.style.animation = 'slideIn 0.3s ease-out reverse';
+      setTimeout(() => {
+        document.body.removeChild(notification);
+        document.head.removeChild(style);
+      }, 300);
+    }, 3000);
   };
 
   const likeButtonClass = isLiked

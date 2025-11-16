@@ -68,7 +68,7 @@ function PropertyDescription() {
 
   return (
     <div className="flex justify-start">
-      <div className="container max-w-[1572px] mx-auto px-4 mt-10">
+      <div className="container w-[700px] mx-auto px-4 mt-10">
         <h2 className="text-[28px] md:text-[32px] font-medium mb-3">
           รายละเอียด
         </h2>
