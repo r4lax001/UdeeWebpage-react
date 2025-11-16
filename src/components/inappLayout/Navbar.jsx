@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Routes, Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from 'react'
+import { Link } from "react-router-dom";
 
 import { IoIosLock } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
@@ -9,7 +9,8 @@ const MegaMenuContent = ({ type }) => {
   const title = type === 'buy' ? 'ขาย' : 'เช่า';
 
   return (
-    <div className="absolute top-full left-0 mt-4 w-auto bg-white rounded-lg shadow-xl p-8 text-black z-50">
+    <div className="absolute top-full left-0 mt-4 w-auto bg-white rounded-lg shadow-xl p-8 text-black z-50 
+                    animate-fadeIn">
       <div className="grid grid-cols-3 gap-x-12 gap-y-6 w-max">
         
         <div className="space-y-3">
@@ -52,25 +53,38 @@ const MegaMenuContent = ({ type }) => {
 
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
+  const menuRef = useRef(null);
 
   const btnNavStyle = "flex items-center justify-center gap-x-1.5 bg-white text-[#000000] font-medium py-2 px-5 rounded-full transform transition-all duration-200 hover:shadow-lg active:scale-95";
   
-  const menuTriggerStyle = "flex items-center gap-1 text-black text-lg font-medium transition-colors hover:text-gray-200 cursor-pointer";
+  const menuTriggerStyle = "flex items-center gap-1 text-[#000000] text-lg font-medium transition-colors hover:text-white/80 cursor-pointer";
 
   const handleMenuToggle = (menuName) => {
     setOpenMenu(prev => (prev === menuName ? null : menuName));
   };
 
+  // ปิดเมนูเมื่อคลิกข้างนอก
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenMenu(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <>
-      <div className='bg-[#AF8FE9] shadow-lg'>
+      <div className='bg-[#AF8FE9] shadow-lg' ref={menuRef}>
         <div className='container max-w-[1773px] mx-auto h-20 px-4'>
           <div className='flex justify-between items-center h-full'>
 
             <div className="flex items-center gap-x-8">
               <Link to="/" className='text-[40px] font-semibold text-white drop-shadow-md'>UDee</Link>
 
-              <div className="flex items-center gap-x-6">
+              <div className="hidden md:flex items-center gap-x-6">
                 
                 <div className="relative">
                   <div className={menuTriggerStyle} onClick={() => handleMenuToggle('buy')}>
@@ -91,14 +105,14 @@ function Navbar() {
               </div>
             </div>
 
-            <div className='flex items-center gap-x-3'>
-              <Link to="">
+            <div className='hidden md:flex items-center gap-x-3'>
+              <Link to="/create-post">
                 <button className={btnNavStyle}>
                   <FiPlus size={20} />
                   ลงขาย
                 </button>
               </Link>
-              <Link to="">
+              <Link to="/profile">
                 <button className={btnNavStyle}>
                   <IoIosLock size={20} />
                   เข้าสู่ระบบ/สมัครสมาชิก
