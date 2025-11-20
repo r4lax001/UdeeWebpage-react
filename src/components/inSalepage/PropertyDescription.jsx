@@ -16,6 +16,8 @@ const propertyDescriptionData = {
     "บ้านเดี่ยว 2 ชั้น ",
   ],
 
+  
+
   facilities: [
     "กล้องวงจรปิด",
     "คลับเฮ้าส์",

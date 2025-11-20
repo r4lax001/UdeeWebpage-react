@@ -9,29 +9,35 @@ import Rentpage from "./Page/Rentpage";
 import PropertyInfo from "./Pages/Forsales/PropertyInfo";
 import PropertyOwnerInfo from "./Pages/Forsales/PropertyOwnerInfo";
 
+// Auth Context
+import { AuthProvider } from "./context/AuthContext";
+
+// DEV - 3 (Login & Register)
+// import Login from "./Page/login/Login"
+// import Register from "./Page/login/Register"
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Main Layout Routes */}
-        <Route path="/" element={<AppLayouts />}>
-          <Route index element={<Rentpage />} />
-          <Route path="salepage" element={<Salepage />} />
-          <Route path="rentpage" element={<Rentpage />} />
-        </Route>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Main Layout Routes */}
+          <Route path="/" element={<AppLayouts />}>
+            <Route index element={<Rentpage />} />
+            <Route path="/salepage" element={<Salepage />} />
+            <Route path="/rentpage" element={<Rentpage />} />
+          </Route>
 
-        {/* Profile Page */}
-        <Route path="profile" element={<UserProfilePage />} />
+          {/* Profile Page */}
+          <Route path="/profile" element={<UserProfilePage />} />
 
-        {/* ForSales Routes */}
-        <Route path="/forsales/propertyinfo" element={<PropertyInfo />} />
-        <Route path="/forsales/propertyownerinfo" element={<PropertyOwnerInfo />} />
+          {/* ForSales Routes */}
+          <Route path="/forsales/propertyinfo" element={<PropertyInfo />} />
+          <Route path="/forsales/propertyownerinfo" element={<PropertyOwnerInfo />} />
 
-        {/* สามารถเพิ่มหน้าใหม่ในอนาคตได้ที่นี่ */}
-        {/* <Route path="/forsales/imageupload" element={<ImageUpload />} /> */}
-        {/* <Route path="/forsales/preview" element={<PreviewPage />} /> */}
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

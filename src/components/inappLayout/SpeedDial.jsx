@@ -8,8 +8,13 @@ import { FaLine } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
 function SpeedDial() {
+
   const [isOpen, setIsOpen] = useState(false);
+  
+  
   const pst = 'fixed bottom-8 right-20 top-30 mb-10 z-50 flex flex-col items-end';
+  
+  const ccc = 'absolute -top-4 left-5 bg-[#FF006E] text-white font-bold py-1 px-4 rounded-lg text-sm'
 
   return (
     <div className={pst}>
@@ -22,7 +27,7 @@ function SpeedDial() {
           ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5 pointer-events-none'}
         `}
       >
-        <div className="absolute -top-4 left-5 bg-[#FF006E] text-white font-bold py-1 px-4 rounded-lg text-sm">
+        <div className={ccc}>
           รายละเอียดผู้ขาย
         </div>
 

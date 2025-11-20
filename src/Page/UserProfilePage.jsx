@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   FaUserCircle, FaPen, FaRegFileAlt, FaRegHeart, 
   FaBullhorn, FaRegLifeRing, FaSignOutAlt 
@@ -6,6 +7,7 @@ import {
 
 import Navbar from "../components/inappLayout/Navbar";
 import Footer from "../components/inappLayout/Footer";
+import { useAuth } from "../context/AuthContext";
 
 const SidebarMenuItem = ({ icon, text, active, onClick }) => {
   return (
@@ -34,25 +36,51 @@ const InfoRow = ({ label, value }) => (
 
 function UserProfilePage() {
   const [activeMenu, setActiveMenu] = useState('profile');
-  const [user, setUser] = useState({
-    username: "Username",
-    id: "ID:XXXXX",
-    name: "Jubpong Umami",
-    userid_detail: null,
-    rank: null,
-    email: "JubpongU@gmail.com",
-    avatarUrl: null
-  });
+  const [isChecking, setIsChecking] = useState(true);
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // รอให้ component mount เสร็จก่อน
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsChecking(false);
+      if (!isAuthenticated) {
+        console.log('❌ Not authenticated after check, redirecting...');
+        navigate('/');
+      } else {
+        console.log('✅ User authenticated:', user?.email);
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [isAuthenticated, navigate, user]);
 
   const handleLogout = () => {
-    console.log("Logging out...");
-    alert("ออกจากระบบ");
+    if (window.confirm('คุณต้องการออกจากระบบหรือไม่?')) {
+      logout();
+      navigate('/');
+    }
   };
 
   const handleEditProfile = () => {
     console.log("Navigating to edit profile...");
     alert("เปิดหน้าแก้ไขข้อมูล");
   };
+
+  // แสดง loading ระหว่างตรวจสอบ
+  if (isChecking || !user) {
+    return (
+      <>
+        <Navbar />
+        <div className="flex items-center justify-center min-h-screen bg-[#F4F0FF]">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-[#AF8FE9] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600">กำลังโหลดข้อมูล...</p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -71,7 +99,11 @@ function UserProfilePage() {
                 <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-300">
                   {user.avatarUrl ? 
                     <img src={user.avatarUrl} alt="Avatar" className="w-full h-full rounded-full object-cover"/> :
-                    <FaUserCircle size={48} className="text-white" />
+                    <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-400 to-blue-400 flex items-center justify-center">
+                      <span className="text-3xl font-bold text-white">
+                        {user.username ? user.username.charAt(0).toUpperCase() : user.email.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
                   }
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform duration-200">
@@ -79,8 +111,8 @@ function UserProfilePage() {
                 </div>
               </div>
               <div className="flex-grow text-white">
-                <h2 className="text-xl font-bold tracking-wide">{user.username}</h2>
-                <p className="text-sm text-white/80 font-medium">{user.id}</p>
+                <h2 className="text-xl font-bold tracking-wide">{user.username || user.email.split('@')[0]}</h2>
+                <p className="text-sm text-white/80 font-medium">ID: {user.email.split('@')[0]}</p>
               </div>
             </div>
           </div>
@@ -149,7 +181,11 @@ function UserProfilePage() {
                   <div className="relative w-40 h-40 rounded-full bg-purple-50 flex items-center justify-center ring-8 ring-white shadow-xl group-hover:scale-105 transition-transform duration-300">
                     {user.avatarUrl ? 
                       <img src={user.avatarUrl} alt="Avatar" className="w-full h-full rounded-full object-cover"/> :
-                      <FaUserCircle size={100} className="text-[#AF8FE9]" />
+                      <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
+                        <span className="text-6xl font-bold text-white">
+                          {user.username ? user.username.charAt(0).toUpperCase() : user.email.charAt(0).toUpperCase()}
+                        </span>
+                      </div>
                     }
                   </div>
                   
@@ -162,9 +198,9 @@ function UserProfilePage() {
               
               {/* Info Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <InfoRow label="ชื่อ - นามสกุล" value={user.name} />
-                <InfoRow label="Userid" value={user.userid_detail} />
-                <InfoRow label="Rank" value={user.rank} />
+                <InfoRow label="ชื่อผู้ใช้" value={user.username || user.email.split('@')[0]} />
+                <InfoRow label="User Type" value={user.userType || 'Personal'} />
+                <InfoRow label="สมาชิกตั้งแต่" value={user.loginTime ? new Date(user.loginTime).toLocaleDateString('th-TH', {year: 'numeric', month: 'long', day: 'numeric'}) : '-'} />
                 <InfoRow label="อีเมล" value={user.email} />
               </div>
 
@@ -178,9 +214,10 @@ function UserProfilePage() {
                 </button>
                 
                 <button 
+                  onClick={() => navigate('/')}
                   className="py-4 px-8 bg-gray-100 text-gray-700 font-bold rounded-xl shadow-md hover:shadow-lg hover:bg-gray-200 transition-all duration-300"
                 >
-                  ยกเลิก
+                  กลับหน้าแรก
                 </button>
               </div>
             </div>
@@ -188,18 +225,17 @@ function UserProfilePage() {
             {/* Stats Cards */}
             <div className="grid grid-cols-2 gap-6 mt-8">
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-                <div className="text-3xl font-bold text-[#AF8FE9] mb-2">24</div>
+                <div className="text-3xl font-bold text-[#AF8FE9] mb-2">0</div>
                 <div className="text-sm text-gray-600">ประกาศทั้งหมด</div>
               </div>
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-                <div className="text-3xl font-bold text-[#AF8FE9] mb-2">156</div>
+                <div className="text-3xl font-bold text-[#AF8FE9] mb-2">0</div>
                 <div className="text-sm text-gray-600">ถูกใจ</div>
               </div>
             </div>
           </div>
         </main>
       </div>
-
     </>
   );
 }
