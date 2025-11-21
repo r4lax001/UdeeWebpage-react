@@ -16,16 +16,22 @@ import { AuthProvider } from "./context/AuthContext";
 // import Login from "./Page/login/Login"
 // import Register from "./Page/login/Register"
 
+// DEV - 4 (Home Page)
+import Home from "./Page/home/Home";
+
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          {/* Home Page - Main Landing */}
+          <Route path="/" element={<Home />} />
+
           {/* Main Layout Routes */}
-          <Route path="/" element={<AppLayouts />}>
+          <Route path="/app" element={<AppLayouts />}>
             <Route index element={<Rentpage />} />
-            <Route path="/salepage" element={<Salepage />} />
-            <Route path="/rentpage" element={<Rentpage />} />
+            <Route path="/app/salepage" element={<Salepage />} />
+            <Route path="/app/rentpage" element={<Rentpage />} />
           </Route>
 
           {/* Profile Page */}
